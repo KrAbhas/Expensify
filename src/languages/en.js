@@ -330,6 +330,7 @@ export default {
         fabAction: 'New chat',
         newChat: 'New chat',
         newGroup: 'New group',
+        saveWorld: 'Save the world',
         newRoom: 'New room',
         buttonSearch: 'Search',
         buttonMySettings: 'My settings',

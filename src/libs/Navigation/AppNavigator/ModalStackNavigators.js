@@ -709,6 +709,30 @@ const EditRequestStackNavigator = createModalStackNavigator([
     },
 ]);
 
+const TeachersUniteStackNavigator = createModalStackNavigator([
+    {
+        getComponent: () => {
+            const NewTeachersUnitePage = require('../../../pages/TeachersUnite/NewTeachersUnitePage').default;
+            return NewTeachersUnitePage;
+        },
+        name: 'Teachers_Unite',
+    },
+    {
+        getComponent: () => {
+            const VoluteerReferralPage = require('../../../pages/TeachersUnite/VolunteerReferralPage').default;
+            return VoluteerReferralPage;
+        },
+        name: 'Volunteer_Referral',
+    },
+    {
+        getComponent: () => {
+            const VolunteerSignupPage = require('../../../pages/TeachersUnite/VolunteerSignupPage').default;
+            return VolunteerSignupPage;
+        },
+        name: 'Volunteer_Signup',
+    },
+])
+
 export {
     MoneyRequestModalStackNavigator,
     SplitDetailsModalStackNavigator,
@@ -730,4 +754,5 @@ export {
     WalletStatementStackNavigator,
     FlagCommentStackNavigator,
     EditRequestStackNavigator,
+    TeachersUniteStackNavigator,
 };

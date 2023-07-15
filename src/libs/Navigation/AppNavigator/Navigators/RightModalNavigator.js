@@ -93,6 +93,10 @@ function RigthModalNavigator() {
                 name="EditRequest"
                 component={ModalStackNavigators.EditRequestStackNavigator}
             />
+            <Stack.Screen
+                name="TeachersUnite"
+                component={ModalStackNavigators.TeachersUniteStackNavigator}
+            />
         </Stack.Navigator>
     );
 }

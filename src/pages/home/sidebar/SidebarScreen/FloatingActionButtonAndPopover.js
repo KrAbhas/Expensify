@@ -219,6 +219,11 @@ class FloatingActionButtonAndPopover extends React.Component {
                                   },
                               ]
                             : []),
+                        {
+                            icon: Expensicons.Heart,
+                            text: this.props.translate('sidebarScreen.saveWorld'),
+                            onSelected: () => this.interceptAnonymousUser(() => Navigation.navigate(ROUTES.TEACHERS_UNITE)),
+                        },
                         ...(Permissions.canUseTasks(this.props.betas)
                             ? [
                                   {

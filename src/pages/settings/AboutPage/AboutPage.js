@@ -72,7 +72,7 @@ function AboutPage(props) {
         <ScreenWrapper includeSafeAreaPaddingBottom={false}>
             {({safeAreaPaddingBottomStyle}) => (
                 <>
-                    <HeaderWithBackButton
+                    <HeaderWithBackButton 
                         title={props.translate('initialSettingsPage.about')}
                         onBackButtonPress={() => Navigation.goBack(ROUTES.SETTINGS)}
                     />

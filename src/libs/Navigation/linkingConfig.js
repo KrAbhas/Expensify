@@ -306,6 +306,13 @@ export default {
                             SplitDetails_Root: ROUTES.SPLIT_BILL_DETAILS,
                         },
                     },
+                    TeachersUnite: {
+                        screens: {
+                            Teachers_Unite: ROUTES.TEACHERS_UNITE,
+                            Volunteer_Referral: ROUTES.VOLUNTEER_REFERRAL,
+                            Volunteer_Signup: ROUTES.VOLUNTEER_SIGNUP,
+                        },
+                    },
                     Task_Details: {
                         screens: {
                             Task_Title: ROUTES.TASK_TITLE,
