@@ -6,7 +6,9 @@ import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import MenuItem from '../../components/MenuItem';
 import ROUTES from '../../ROUTES';
 import NAVIGATION from '../../libs/Navigation/Navigation';
+import DesktopBackgroundImage from '../../../assets/images/home-background--desktop.svg';
 import * as Expensicons from '../../components/Icon/Expensicons';
+import ButtonWithDropDownMenu from '../../components/ButtonWithDropdownMenu'
 
 export default function NewTeachersUnitePage(props) {
     console.log("Save the world");
@@ -25,6 +27,9 @@ export default function NewTeachersUnitePage(props) {
                         title="Save The World"
                     />
                     <ScrollView>
+                        <ButtonWithDropDownMenu
+                            options={[{text: 'Pay with Expensify', value:'afejk'}, {text: 'PayPal', value:'afed'}]}
+                            onPress={()=>{}}/>
                         <MenuItem
                             key={"item1"}
                             title={"I know a teacher"}
