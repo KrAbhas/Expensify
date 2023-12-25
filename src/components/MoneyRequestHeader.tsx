@@ -1,13 +1,12 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import {View} from 'react-native';
-import {withOnyx} from 'react-native-onyx';
+import {OnyxEntry, withOnyx} from 'react-native-onyx';
 import _ from 'underscore';
 import GoogleMeetIcon from '@assets/images/google-meet.svg';
 import ZoomIcon from '@assets/images/zoom-icon.svg';
 import useLocalize from '@hooks/useLocalize';
 import useThemeStyles from '@hooks/useThemeStyles';
 import useWindowDimensions from '@hooks/useWindowDimensions';
-import compose from '@libs/compose';
 import * as CurrencyUtils from '@libs/CurrencyUtils';
 import * as HeaderUtils from '@libs/HeaderUtils';
 import Navigation from '@libs/Navigation/Navigation';
@@ -24,11 +23,15 @@ import HeaderWithBackButton from './HeaderWithBackButton';
 import * as Expensicons from './Icon/Expensicons';
 import MoneyReportHeaderStatusBar from './MoneyReportHeaderStatusBar';
 import SettlementButton from './SettlementButton';
-import withWindowDimensions from './withWindowDimensions';
 import type {PersonalDetails, Policy, Report, ReportNextStep, Session} from '@src/types/onyx';
-import type {WindowDimensionsProps} from './withWindowDimensions/types';
 
-type MoneyReportHeaderProps = WindowDimensionsProps & {
+type MoneyReportHeaderOnyxProps = {
+    chatReport: OnyxEntry<Report>;
+    nextStep: OnyxEntry<ReportNextStep>;
+    session: OnyxEntry<Session>;
+}
+
+type MoneyReportHeaderProps = MoneyReportHeaderOnyxProps & {
     /** The report currently being looked at */
     report: Report;
 
@@ -48,8 +51,8 @@ type MoneyReportHeaderProps = WindowDimensionsProps & {
     session: Session;
 };
 
-function MoneyReportHeader({session, personalDetails, policy, chatReport, nextStep, report: moneyRequestReport, isSmallScreenWidth}: MoneyReportHeaderProps) {
-    const {windowWidth} = useWindowDimensions();
+function MoneyReportHeader({session, personalDetails, policy, chatReport, nextStep, report: moneyRequestReport}: MoneyReportHeaderProps) {
+    const {windowWidth, isSmallScreenWidth} = useWindowDimensions();
     const styles = useThemeStyles();
     const {translate} = useLocalize();
     const reimbursableTotal = ReportUtils.getMoneyRequestReimbursableTotal(moneyRequestReport);
@@ -211,17 +214,14 @@ function MoneyReportHeader({session, personalDetails, policy, chatReport, nextSt
 
 MoneyReportHeader.displayName = 'MoneyReportHeader';
 
-export default compose(
-    withWindowDimensions,
-    withOnyx({
-        chatReport: {
-            key: ({report}) => `${ONYXKEYS.COLLECTION.REPORT}${report.chatReportID}`,
-        },
-        nextStep: {
-            key: ({report}) => `${ONYXKEYS.COLLECTION.NEXT_STEP}${report.reportID}`,
-        },
-        session: {
-            key: ONYXKEYS.SESSION,
-        },
-    }),
-)(MoneyReportHeader);
+export default withOnyx<MoneyReportHeaderProps, MoneyReportHeaderOnyxProps>({
+    chatReport: {
+        key: ({report}) => `${ONYXKEYS.COLLECTION.REPORT}${report.chatReportID}`,
+    },
+    nextStep: {
+        key: ({report}) => `${ONYXKEYS.COLLECTION.NEXT_STEP}${report.reportID}`,
+    },
+    session: {
+        key: ONYXKEYS.SESSION,
+    },
+})(MoneyReportHeader);
